@@ -1,1 +1,1 @@
-A simple C program to manage personal diary entries. This system allows users to add, view, edit, delete, and search diary entries. Data is stored securely using file handling and basic encryption techniques to ensure privacy.
+*A simple C program to manage personal diary entries. This system allows users to add, view, edit, delete, and search diary entries. Data is stored securely using file handling and basic encryption techniques to ensure privacy.*
