@@ -58,7 +58,7 @@ int main() {
         
         switch (choice) {
             case 1: addEntry(); break;
-            case 2: viewEntries(); break;
+            case 2: viewEntry(); break;
             case 3: searchEntry(); break;
             case 4: editEntry(); break;
             case 5: deleteEntry(); break;
