@@ -92,12 +92,18 @@ int main() {
         
         
         switch (choice) {
-            case 1: addEntry(); break;
-            case 2: viewEntry(); break;
-            case 3: searchEntry(); break;
-            case 4: editEntry(); break;
-            case 5: deleteEntry(); break;
-            case 6: printf("Exiting...\n"); break;
+            case 1: addEntry(); 
+                break;
+            case 2: viewEntry(); 
+                break;
+            case 3: searchEntry(); 
+                break;
+            case 4: editEntry(); 
+                break;
+            case 5: deleteEntry(); 
+                break;
+            case 6: printf("Exiting...\n"); 
+                break;
             default: printf("Invalid choice!\n");
         }
     } while (choice != 6);
