@@ -23,6 +23,8 @@ void addEntry() //Function to add a new diary entry with date and content
     // Need to declare a structure to store diary entry (date + content)
     // Need a way to store and manage multiple entries (array, file)
     
+    int y, m, d;
+    
     do {
         printf("Enter date (YYYY-MM-DD): ");
         if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d)) 
