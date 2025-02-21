@@ -5,10 +5,45 @@ void encrypt() //Function to encrypt the diary entry before saving to the file
     
 }
 
+
+int isValidDate(int y, int m, int d) //Function to validate date input
+{
+    if (m < 1 || m > 12 || d < 1 || d > 31 ||
+        (m == 2 && d > 28) || // needs leap year handling in the future
+        ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30)) {
+        return 0; // invalid date
+    }
+    return 1; // valid date
+}
+
+
 void addEntry() //Function to add a new diary entry with date and content
 {
+   
+    // Need to declare a structure to store diary entry (date + content)
+    // Need a way to store and manage multiple entries (array, file)
     
+    do {
+        printf("Enter date (YYYY-MM-DD): ");
+        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d)) 
+        {
+            printf("Invalid date! Try again.\n");
+        } 
+        else 
+        {
+            // Need string to store formatted date
+            break; // exit loop on valid date
+        }
+    } while (1); // loop will run forever unless explicitly broken
+    
+    printf("Enter diary entry: ");
+    // Need string to store the diary content
+
+    // Need file to store the entry permanently 
+    printf("Entry added successfully!\n");
+
 }
+
 
 void viewEntry() //Function to display all diary entries in chronological order
 {
