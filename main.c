@@ -67,7 +67,7 @@ void editEntry() //Function to edit an existing diary entry by date
 void deleteEntry() //Function to delete a diary entry by date
 {
     int y,m,d;
-    int section;
+
 
     do {
         printf("Enter date (YYYY-MM-DD): ");
@@ -82,38 +82,6 @@ void deleteEntry() //Function to delete a diary entry by date
         }
     } while (1); // loop will run forever unless explicitly broken
 
-    // Prompt user to select a section
-    printf("\nSelect the section from which to delete an entry:\n");
-    printf("1. Personal\n");
-    printf("2. Work\n");
-    printf("3. Travel\n");
-    printf("4. Others\n");
-    printf("Enter your choice: ");
-    scanf("%d", &section);
-
-    while (section < 1 || section > 4) {
-        printf("Invalid choice. Please enter a number between 1 and 4: ");
-
-         break;
-    }
-
-    // Perform deletion based on section
-    switch (section) {
-        case 1:
-            printf("Deleting entry from Personal section on %d-%d-%d...\n", y, m, d);
-            break;
-        case 2:
-            printf("Deleting entry from Work section on %d-%d-%d...\n", y, m, d);
-            break;
-        case 3:
-            printf("Deleting entry from Travel section on %d-%d-%d...\n", y, m, d);
-            break;
-        case 4:
-            printf("Deleting entry from Others section on %d-%d-%d...\n", y, m, d);
-            break;
-    }
-
-    printf("Entry deleted successfully!\n");
 
 }
 
