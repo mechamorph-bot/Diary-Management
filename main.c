@@ -120,9 +120,11 @@ void editEntry() //Function to edit an existing diary entry by date
         printf("Current Entry: %s\n", entry);
         printf("Enter new content: ");
         }
+    else{
 
     // If no entry is found with the entered date:
     printf("No entry found for the given date.\n");
+    }
 
 }
 
