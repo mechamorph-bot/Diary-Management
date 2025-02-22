@@ -107,6 +107,7 @@ void editEntry() //Function to edit an existing diary entry by date
         } 
         else 
         {
+            //If valid then it will print the content
 
             break;
         }
