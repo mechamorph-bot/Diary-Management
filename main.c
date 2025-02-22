@@ -52,28 +52,15 @@ void addEntry() //Function to add a new diary entry with date and content
 
 void viewEntry() //Function to display all diary entries in chronological order
 { 
-    int y,m,d;
-
-
-    do {
-        printf("Enter date (YYYY-MM-DD): ");
-        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d))
-        {
-            printf("Invalid date! Try again.\n");
-        }
-        else
-        {
-            // Need to format the date as YYYY-MM-DD with string
-            break; // exit loop on valid date
-        }
-       } 
-    while (1); // loop will run forever unless explicitly broken
-
-    // Need to check if entry for the date exists through file
-    // If found, display the content
+    // Need to check if there are any saved entries
+    // Need a way to read multiple entries
     
-    // If not found, display: 
-    printf("No entry found for the given date.");
+    // Loop through all saved entries
+    // For each entry:
+        // Display the date and content
+    
+    // If no entries are found:
+    printf("No entries found.\n");
 
 }
 
