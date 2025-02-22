@@ -2,7 +2,7 @@
 
 void encrypt() //Function to encrypt the diary entry before saving to the file
 {
-    
+
 }
 
 
@@ -19,29 +19,29 @@ int isValidDate(int y, int m, int d) //Function to validate date input
 
 void addEntry() //Function to add a new diary entry with date and content
 {
-   
+
     // Need to declare a structure to store diary entry (date + content)
     // Need a way to store and manage multiple entries (array, file)
-    
+
     int y, m, d;
-    
+
     do {
         printf("Enter date (YYYY-MM-DD): ");
-        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d)) 
+        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d))
         {
             printf("Invalid date! Try again.\n");
-        } 
-        else 
+        }
+        else
         {
             // Need string to store formatted date
             break; // exit loop on valid date
         }
     } while (1); // loop will run forever unless explicitly broken
-    
+
     printf("Enter diary entry: ");
     // Need string to store the diary content
 
-    // Need file to store the entry permanently 
+    // Need file to store the entry permanently
     printf("Entry added successfully!\n");
 
 }
@@ -66,11 +66,71 @@ void editEntry() //Function to edit an existing diary entry by date
 
 void deleteEntry() //Function to delete a diary entry by date
 {
+    int y,m,d;
+    int section;
+
+    do {
+        printf("Enter date (YYYY-MM-DD): ");
+        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d))
+        {
+            printf("Invalid date! Try again.\n");
+        }
+        else
+        {
+            // Need string to store formatted date
+            break; // exit loop on valid date
+        }
+    } while (1); // loop will run forever unless explicitly broken
+
+    // Prompt user to select a section
+    printf("\nSelect the section from which to delete an entry:\n");
+    printf("1. Personal\n");
+    printf("2. Work\n");
+    printf("3. Travel\n");
+    printf("4. Others\n");
+    printf("Enter your choice: ");
+    scanf("%d", &section);
+
+    while (section < 1 || section > 4) {
+        printf("Invalid choice. Please enter a number between 1 and 4: ");
+
+         break;
+    }
+
+    // Perform deletion based on section
+    switch (section) {
+        case 1:
+            printf("Deleting entry from Personal section on %d-%d-%d...\n", y, m, d);
+            break;
+        case 2:
+            printf("Deleting entry from Work section on %d-%d-%d...\n", y, m, d);
+            break;
+        case 3:
+            printf("Deleting entry from Travel section on %d-%d-%d...\n", y, m, d);
+            break;
+        case 4:
+            printf("Deleting entry from Others section on %d-%d-%d...\n", y, m, d);
+            break;
+    }
+
+    printf("Entry deleted successfully!\n");
 
 }
 
 int authenticate() //Function to verify the user's password before accessing the diary
 {
+    int x; //setting a variable to take input of pin
+    printf("Enter The PIN:");    //prompt to enter pin
+     scanf("%d",&x);    //receiving pin
+      if(x==1212){   //checking if pin x=1212
+       return 1;  //returns true
+      }
+      else{
+        printf("You Have Entered a Wrong PIN");  //giving prompt if the pin is mismatched
+        return 0; //returns false
+      }
+
+}
 
 }
 
@@ -79,7 +139,7 @@ int main() {
     if (!authenticate()) {
         return 0;
     }
-    
+
     int choice;
     do {
         printf("\nPersonal Diary Management System\n");
@@ -91,20 +151,20 @@ int main() {
         printf("6. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-        
-        
+
+
         switch (choice) {
-            case 1: addEntry(); 
+            case 1: addEntry();
                 break;
-            case 2: viewEntry(); 
+            case 2: viewEntry();
                 break;
-            case 3: searchEntry(); 
+            case 3: searchEntry();
                 break;
-            case 4: editEntry(); 
+            case 4: editEntry();
                 break;
-            case 5: deleteEntry(); 
+            case 5: deleteEntry();
                 break;
-            case 6: printf("Exiting...\n"); 
+            case 6: printf("Exiting...\n");
                 break;
             default: printf("Invalid choice!\n");
         }
