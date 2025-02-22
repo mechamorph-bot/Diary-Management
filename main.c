@@ -122,8 +122,9 @@ int authenticate() //Function to verify the user's password before accessing the
     int x; //setting a variable to take input of pin
     printf("Enter The PIN:");    //prompt to enter pin
      scanf("%d",&x);    //receiving pin
-      if(x==1212){   //checking if pin x=1212
-       return 1;  //returns true
+      if(x==1212){  //checking if pin x=1212
+       printf("You have logged in successfully\n");
+       return 1;    //returns true
       }
       else{
         printf("You Have Entered a Wrong PIN");  //giving prompt if the pin is mismatched
@@ -132,7 +133,6 @@ int authenticate() //Function to verify the user's password before accessing the
 
 }
 
-}
 
 
 int main() {
