@@ -95,29 +95,33 @@ void searchEntry() //Function to search for a diary entry by date
 void editEntry() //Function to edit an existing diary entry by date
 {
 
-// Function to edit an entry
     int y, m, d;
 
     int found = 0;
 
     do {
         printf("Enter date (YYYY-MM-DD): ");
-        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d)) {
+        if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d)) 
+        {
             printf("Invalid date! Try again.\n");
-        } else {
+        } 
+        else 
+        {
 
             break;
         }
-    } while (1);
+      } 
+        while (1);
     
     if (//if file found)
         {
             found = 1;
-        printf("Old Entry: %s\n", entry);
-        printf("Enter new entry: ");
-            }
+        printf("Current Entry: %s\n", entry);
+        printf("Enter new content: ");
+        }
 
-
+    // If no entry is found with the entered date:
+    printf("No entry found for the given date.\n");
 
 }
 
