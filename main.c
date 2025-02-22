@@ -36,10 +36,13 @@ void addEntry() //Function to add a new diary entry with date and content
             // Need string to store formatted date
             break; // exit loop on valid date
         }
-    } while (1); // loop will run forever unless explicitly broken
+       } 
+    while (1); // loop will run forever unless explicitly broken
 
     printf("Enter diary entry: ");
     // Need string to store the diary content
+
+   // If an entry with the same date already exists, it will display a message and prevent the new entry from being added.
 
     // Need file to store the entry permanently
     printf("Entry added successfully!\n");
@@ -48,7 +51,8 @@ void addEntry() //Function to add a new diary entry with date and content
 
 
 void viewEntry() //Function to display all diary entries in chronological order
-{ int y,m,d;
+{ 
+    int y,m,d;
 
 
     do {
@@ -59,17 +63,24 @@ void viewEntry() //Function to display all diary entries in chronological order
         }
         else
         {
-            // Need string to store formatted date
+            // Need to format the date as YYYY-MM-DD with string
             break; // exit loop on valid date
         }
-    } while (1); // loop will run forever unless explicitly broken
+       } 
+    while (1); // loop will run forever unless explicitly broken
 
-
+    // Need to check if entry for the date exists through file
+    // If found, display the content
+    
+    // If not found, display: 
+    printf("No entry found for the given date.");
 
 }
+
 
 void searchEntry() //Function to search for a diary entry by date
-{ int y,m,d;
+{ 
+    int y,m,d;
 
 
     do {
@@ -80,14 +91,18 @@ void searchEntry() //Function to search for a diary entry by date
         }
         else
         {
-            // Need string to store formatted date
-            break; // exit loop on valid date
+            // Need to check if an entry with this date exists
+            // If found, display the entry content
+            break; // exit loop on valid date and entry
         }
-    } while (1); // loop will run forever unless explicitly broken
+       } 
+   while (1); // loop will run forever unless explicitly broken
 
-
+    // If no entry is found with the entered date:
+    printf("No entry found for the given date.\n");
 
 }
+
 
 void editEntry() //Function to edit an existing diary entry by date
 {
@@ -102,18 +117,25 @@ void deleteEntry() //Function to delete a diary entry by date
 
 
     do {
-        printf("Enter date (YYYY-MM-DD): ");
+        printf("Enter date of the entry to delete (YYYY-MM-DD): ");
         if (scanf("%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d))
         {
             printf("Invalid date! Try again.\n");
         }
         else
         {
-            // Need string to store formatted date
-            break; // exit loop on valid date
+            // Need to check if an entry with this date exists
+            // If found, delete the entry
+            break; // exit loop if valid date and entry is found
         }
-    } while (1); // loop will run forever unless explicitly broken
+      } 
+    while (1); // loop until a valid date is entered
 
+    // If no entry is found with the entered date:
+    printf("No entry found for the given date.\n");
+
+    // If entry is found:
+    printf("Entry deleted successfully!\n");
 
 }
 
@@ -122,11 +144,13 @@ int authenticate() //Function to verify the user's password before accessing the
     int x; //setting a variable to take input of pin
     printf("Enter The PIN:");    //prompt to enter pin
      scanf("%d",&x);    //receiving pin
-      if(x==1212){  //checking if pin x=1212
+      if(x==1212) //checking if pin x=1212
+      {  
        printf("You have logged in successfully\n");
-       return 1;    //returns true
+       return 1; //returns true
       }
-      else{
+      else 
+      {
         printf("You Have Entered a Wrong PIN");  //giving prompt if the pin is mismatched
         return 0; //returns false
       }
