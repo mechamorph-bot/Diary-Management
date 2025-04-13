@@ -176,6 +176,14 @@ void searchEntry()
     fgets(searchDate, sizeof(searchDate), stdin);
     searchDate[strcspn(searchDate, "\n")] = 0; // Remove newline
 
+     int y, m, d;
+    if (sscanf(entries[entryCount].date, "%4d-%2d-%2d", &y, &m, &d) != 3)
+    {
+        printf("Invalid date format. Please use the format YYYY-MM-DD.\n");
+        return;
+    }
+
+
     int found = 0;
 
     for (int i = 0; i < entryCount; i++)
