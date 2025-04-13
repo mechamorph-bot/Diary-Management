@@ -230,7 +230,7 @@ void loadEntries()                         // loads entries
 
 // ------------------- View Entries -------------------
 
-/*void viewEntries() {
+void viewEntries() {
     FILE *file = fopen("diaryy.txt", "r");
     if (!file) {
         printf("No entries found.\n");
@@ -352,7 +352,7 @@ void loadEntries()                         // loads entries
     printf("No entry found for the given date.\n");
     }
 
-}*/
+}
 
 
 
