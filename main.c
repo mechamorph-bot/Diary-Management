@@ -196,10 +196,51 @@ void searchEntry()
     }
 }
 
-// Function to edit an entry (not yet implemented)
-void editEntry()
+void editEntry() // Function to edit an existing diary entry by date
 {
-    printf("\nEdit Entry functionality not implemented yet.\n");
+    int y, m, d;
+    char dateInput[20];
+    int found = 0;
+
+    getchar(); // clear input buffer
+
+    // Ask user to enter a valid date
+    do {
+        printf("Enter date (YYYY-MM-DD): ");
+        fgets(dateInput, sizeof(dateInput), stdin);
+        dateInput[strcspn(dateInput, "\n")] = 0; // remove newline
+
+        if (sscanf(dateInput, "%d-%d-%d", &y, &m, &d) != 3 || !isValidDate(y, m, d)) {
+            printf("Invalid date! Try again.\n");
+        } else {
+            break;
+        }
+    } while (1);
+
+    // Loop through entries to find a matching date
+    for (int i = 0; i < entryCount; i++) {
+        if (strcmp(entries[i].date, dateInput) == 0) {
+            found = 1;
+            printf("Current Title: %s\n", entries[i].title);
+            printf("Current Content: %s\n", entries[i].content);
+
+            printf("Enter new title: ");
+            fgets(entries[i].title, sizeof(entries[i].title), stdin);
+            entries[i].title[strcspn(entries[i].title, "\n")] = 0;
+
+            printf("Enter new content: ");
+            fgets(entries[i].content, sizeof(entries[i].content), stdin);
+            entries[i].content[strcspn(entries[i].content, "\n")] = 0;
+
+            saveEntries(); // save updated entries
+            printf("Entry updated successfully.\n");
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("No entry found for the given date.\n");
+    }
 }
 
 // Function to delete an entry (not yet implemented)
