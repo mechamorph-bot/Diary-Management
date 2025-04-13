@@ -246,11 +246,11 @@ void viewEntries() {
         printf("Content: %s\n", entry.content);
     }
     fclose(file);
-}*/
+}
 
 //  Search Entry
 
-/*void searchEntry() {
+void searchEntry() {
     int y, m, d;
     printf("Enter date to search (YYYY-MM-DD): ");
     scanf("%d-%d-%d", &y, &m, &d);
@@ -282,7 +282,7 @@ void viewEntries() {
     if (!found) {
         printf("No entry found for this date.\n");
     }
-}*/
+}
 
 
 
