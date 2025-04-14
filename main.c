@@ -91,8 +91,8 @@ int main() {
 
 
 // Function to authenticate the user with a PIN
-int authenticate() {
-
+int authenticate() 
+{
     int x;
     printf("Enter The PIN: ");
     scanf("%d", &x);
@@ -109,10 +109,45 @@ int authenticate() {
 }
 
 
+ // XOR encryption/decryption
+void xorEncryptDecrypt(char *text) 
+{        
+    for (int i = 0; text[i]; i++)
+    {
+        text[i] ^= ENCRYPTION_KEY;
+    }
+}
 
 
-void loadEntries() {           // Function to load entries from the file
 
+// Function to save entries to the file
+void saveEntries() 
+{             
+    FILE *fp = fopen(FILENAME, "wb");
+    if (!fp)
+    {
+        printf("Error saving entries.\n");
+        return;
+    }
+
+    for (int i = 0; i < entryCount; i++)
+    {
+        xorEncryptDecrypt(entries[i].date);
+        xorEncryptDecrypt(entries[i].title);
+        xorEncryptDecrypt(entries[i].content);
+        fwrite(&entries[i], sizeof(DiaryEntry), 1, fp);
+        xorEncryptDecrypt(entries[i].date);
+        xorEncryptDecrypt(entries[i].title);
+        xorEncryptDecrypt(entries[i].content);
+    }
+    fclose(fp);
+}
+
+
+
+// Function to load entries from the file
+void loadEntries() 
+{           
     FILE *fp = fopen(FILENAME, "rb");
     if (!fp)
         return;
@@ -128,11 +163,35 @@ void loadEntries() {           // Function to load entries from the file
 }
 
 
+ // Leap year check
+int isLeapYear(int y) 
+{    
+    return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+}
+
+
+// Date validation
+int isValidDate(int y, int m, int d) 
+{   
+    if (m < 1 || m > 12 || d < 1)
+        return 0;
+
+    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (isLeapYear(y))
+        daysInMonth[1] = 29;
+
+    if (d > daysInMonth[m - 1])
+        return 0;
+
+    return 1;
+}
 
 
 
+// Function to add a new entry
 void addEntry()  
-{               // Function to add a new entry
+{               
 
     if (entryCount >= MAX_ENTRIES)
     {
@@ -177,67 +236,9 @@ void addEntry()
 }
 
 
-int isValidDate(int y, int m, int d) {    // Date validation
-
-    if (m < 1 || m > 12 || d < 1)
-        return 0;
-
-    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if (isLeapYear(y))
-        daysInMonth[1] = 29;
-
-    if (d > daysInMonth[m - 1])
-        return 0;
-
-    return 1;
-}
-
-
-
-int isLeapYear(int y) {            // Leap year check
-
-    return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
-}
-
-
-
-void xorEncryptDecrypt(char *text) {           // XOR encryption/decryption (if you decide to add encryption later)
-
-    for (int i = 0; text[i]; i++)
-    {
-        text[i] ^= ENCRYPTION_KEY;
-    }
-}
-
-
-
-void saveEntries() {              // Function to save entries to the file
-
-    FILE *fp = fopen(FILENAME, "wb");
-    if (!fp)
-    {
-        printf("Error saving entries.\n");
-        return;
-    }
-
-    for (int i = 0; i < entryCount; i++)
-    {
-        xorEncryptDecrypt(entries[i].date);
-        xorEncryptDecrypt(entries[i].title);
-        xorEncryptDecrypt(entries[i].content);
-        fwrite(&entries[i], sizeof(DiaryEntry), 1, fp);
-        xorEncryptDecrypt(entries[i].date);
-        xorEncryptDecrypt(entries[i].title);
-        xorEncryptDecrypt(entries[i].content);
-    }
-    fclose(fp);
-}
-
-
-
-void viewEntry() {         // Function to view all entries
-
+// Function to view all entries
+void viewEntry() 
+{         
     if (entryCount == 0)
     {
         printf("No entries to display.\n");
@@ -257,8 +258,9 @@ void viewEntry() {         // Function to view all entries
 
 
 
-void searchEntry() {       // Function to search for an entry by date
-
+// Function to search for an entry by date
+void searchEntry()
+{       
     char searchDate[20];
     getchar(); // Clear input buffer
     printf("Enter date to search (YYYY-MM-DD): ");
@@ -294,15 +296,16 @@ void searchEntry() {       // Function to search for an entry by date
 
 
 
-void editEntry()  {             // Function to edit an existing diary entry by date
-
+ // Function to edit an existing diary entry by date
+void editEntry()  
+{            
     int y, m, d;
     char dateInput[20];
     int found = 0;
+    
+    getchar();                    // clear input buffer      
 
-    getchar();                        // clear input buffer
-
-                                          // Ask user to enter a valid date
+                                         // Ask user to enter a valid date
     do {
         printf("Enter date (YYYY-MM-DD): ");
         fgets(dateInput, sizeof(dateInput), stdin);
@@ -343,8 +346,9 @@ void editEntry()  {             // Function to edit an existing diary entry by d
 
 
 
-
-void deleteEntry()  {       //Function to delete a diary entry by date
+ //Function to delete a diary entry by date
+void deleteEntry()  
+{      
 
     if (entryCount == 0) {          //searching for entries if there have any
         printf("No entries to delete.\n");
