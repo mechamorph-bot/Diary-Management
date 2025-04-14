@@ -266,7 +266,7 @@ void searchEntry() {       // Function to search for an entry by date
     searchDate[strcspn(searchDate, "\n")] = 0; // Remove newline
 
      int y, m, d;
-    if (sscanf(entries[entryCount].date, "%4d-%2d-%2d", &y, &m, &d) != 3)
+    if (sscanf(searchDate, "%4d-%2d-%2d", &y, &m, &d) != 3 || !isValidDate(y, m, d))
     {
         printf("Invalid date format. Please use the format YYYY-MM-DD.\n");
         return;
