@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define FILENAME "diaryy.txt"
-#define MAX_ENTRIES 100
+#define MAX_ENTRIES 366
 #define ENCRYPTION_KEY 'K' // XOR key
 
 
@@ -13,6 +13,9 @@ typedef struct  {             // global structure for diary entries
     char title[50];
     char content[1000];
  } DiaryEntry;
+
+DiaryEntry entries[MAX_ENTRIES];
+int entryCount = 0;
 
 
 int authenticate();
@@ -27,9 +30,6 @@ void searchEntry();
 void editEntry();
 void deleteEntry();
 
-
-DiaryEntry entries[MAX_ENTRIES];
-int entryCount = 0;
 
 
 
@@ -131,7 +131,8 @@ void loadEntries() {           // Function to load entries from the file
 
 
 
-void addEntry()  {               // Function to add a new entry
+void addEntry()  
+{               // Function to add a new entry
 
     if (entryCount >= MAX_ENTRIES)
     {
@@ -145,16 +146,21 @@ void addEntry()  {               // Function to add a new entry
     entries[entryCount].date[strcspn(entries[entryCount].date, "\n")] = 0;
 
     int y, m, d;
-    if (sscanf(entries[entryCount].date, "%4d-%2d-%2d", &y, &m, &d) != 3)
+    //Date validation, sscanf checks if the input matches YYYY-MM-DD format and extracts the integers
+    if (sscanf(entries[entryCount].date, "%4d-%2d-%2d", &y, &m, &d) != 3 || !isValidDate(y, m, d))
     {
-        printf("Invalid date format. Please use the format YYYY-MM-DD.\n");
-        return;
+    printf("Invalid date. Please enter a valid date in the format YYYY-MM-DD and ensure it's a real date.\n");
+    return;
     }
 
-    if (!isValidDate(y, m, d))
+    // checking if this date already exists
+    for (int i = 0; i < entryCount; i++)
     {
-        printf("Invalid date. Please enter a valid date (format: year, month, and day).\n");
-        return;
+        if (strcmp(entries[i].date, entries[entryCount].date) == 0)
+        {
+            printf("An entry for this date already exists. If you want to modify it, please use the 'Edit Entry' option from the menu.\n");
+            return;
+        }
     }
 
     printf("Enter title: ");
