@@ -272,12 +272,6 @@ void searchEntry() {       // Function to search for an entry by date
         return;
     }
 
-    if(!isValidDate(y, m, d))
-    {
-                printf("Invalid date format. Please enter a valid date(format YYYY-MM-DD.\n");
-return;
-    }
-
     int found = 0;
 
     for (int i = 0; i < entryCount; i++)
