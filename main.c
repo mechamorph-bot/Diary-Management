@@ -57,8 +57,12 @@ int main() {
         scanf("%d", &choice);
 
 
-        printf("Cautions : You have to maintain (YYYY-MM-DD) this format while giving date\n");
-
+        // Print caution when accepting date input
+        if (choice == 1 || choice == 2 || choice == 3 || choice == 4 || choice == 5) 
+        {
+            printf("Caution: You have to maintain this (YYYY-MM-DD) format while giving date\n");
+        }
+        
         switch (choice)
         {
         case 1:
