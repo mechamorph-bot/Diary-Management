@@ -94,24 +94,6 @@ int main() {
 
 
 
-// Function to authenticate the user with a PIN
-int authenticate() 
-{
-    int x;
-    printf("Enter The PIN: ");
-    scanf("%d", &x);
-    if (x == 1212)
-    {
-        printf("You have logged in successfully\n");
-        return 1;
-    }
-    else
-    {
-        printf("You Have Entered a Wrong PIN\n");
-        return 0;
-    }
-}
-
 
  // XOR encryption/decryption
 void xorEncryptDecrypt(char *text) 
@@ -240,6 +222,8 @@ void addEntry()
 }
 
 
+
+
 // Function to view all entries
 void viewEntry() 
 {         
@@ -347,6 +331,27 @@ void editEntry()
         printf("No entry found for the given date.\n");
     }
 }
+
+
+
+// Function to authenticate the user with a PIN
+int authenticate() 
+{
+    int x;
+    printf("Enter The PIN: ");
+    scanf("%d", &x);
+    if (x == 1212)
+    {
+        printf("You have logged in successfully\n");
+        return 1;
+    }
+    else
+    {
+        printf("You Have Entered a Wrong PIN\n");
+        return 0;
+    }
+}
+
 
 
 
