@@ -204,7 +204,8 @@ void addEntry()
     printf("Enter date (YYYY-MM-DD): ");
     fgets(entries[entryCount].date, sizeof(entries[entryCount].date), stdin);
  
-// Removes the newline character from the end of the string   entries[entryCount].date[strcspn(entries[entryCount].date, "\n")] = 0;
+// Removes the newline character from the end of the string
+entries[entryCount].date[strcspn(entries[entryCount].date, "\n")] = 0;
 
     int y, m, d;
     //Date validation, sscanf checks if the input matches YYYY-MM-DD format and extracts the integers
