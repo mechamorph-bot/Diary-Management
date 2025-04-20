@@ -116,12 +116,19 @@ void saveEntries()
         return;
     }
 
+
+    // Loops through all saved entries
     for (int i = 0; i < entryCount; i++)
     {
+        // Encrypts each field before saving
         xorEncryptDecrypt(entries[i].date);
         xorEncryptDecrypt(entries[i].title);
         xorEncryptDecrypt(entries[i].content);
+
+        // Writes the encrypted entry to the file
         fwrite(&entries[i], sizeof(DiaryEntry), 1, fp);
+
+        // Decrypts again to restore original values in memory
         xorEncryptDecrypt(entries[i].date);
         xorEncryptDecrypt(entries[i].title);
         xorEncryptDecrypt(entries[i].content);
@@ -137,12 +144,20 @@ void loadEntries()
     FILE *fp = fopen(FILENAME, "rb");
     if (!fp)
         return;
+
+    // Starts with zero entries loaded
     entryCount = 0;
+
+    // Reads entries from the file until the end
     while (fread(&entries[entryCount], sizeof(DiaryEntry), 1, fp) == 1 && entryCount < MAX_ENTRIES)
     {
-        xorEncryptDecrypt(entries[entryCount].date);
-        xorEncryptDecrypt(entries[entryCount].title);
-        xorEncryptDecrypt(entries[entryCount].content);
+   
+  // Decrypts each field after reading
+  xorEncryptDecrypt(entries[entryCount].date);
+  xorEncryptDecrypt(entries[entryCount].title);
+  xorEncryptDecrypt(entries[entryCount].content);
+
+        // Moves to the next entry slot
         entryCount++;
     }
     fclose(fp);
@@ -185,10 +200,11 @@ void addEntry()
         return;
     }
 
-    getchar(); // clear buffer
+    getchar(); // clear input buffer
     printf("Enter date (YYYY-MM-DD): ");
     fgets(entries[entryCount].date, sizeof(entries[entryCount].date), stdin);
-    entries[entryCount].date[strcspn(entries[entryCount].date, "\n")] = 0;
+ 
+// Removes the newline character from the end of the string   entries[entryCount].date[strcspn(entries[entryCount].date, "\n")] = 0;
 
     int y, m, d;
     //Date validation, sscanf checks if the input matches YYYY-MM-DD format and extracts the integers
